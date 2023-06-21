@@ -1,6 +1,5 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,22 +14,22 @@ public class HeaderTests extends TestBase {
 
     @Test
     public void headerLogo() {
-        Assert.assertTrue(isElementPresent(By.xpath("//h1")));
+        Assert.assertTrue(app.isLogoPresent());
     }
 
     @Test
     public void headerHome() {
-        Assert.assertTrue(isElementPresent(By.xpath("//a[@href='/home']")));
+        Assert.assertTrue(app.isHomeLinkPresent());
     }
 
     @Test
     public void headerAbout() {
-        Assert.assertTrue(isElementPresent(By.xpath("//a[@href='/about']")));
+        Assert.assertTrue(app.isAboutLinkPresent());
     }
 
     @Test
     public void headerLogin() {
-        Assert.assertTrue(isElementPresent(By.xpath("//a[@href='/login']")));
+        Assert.assertTrue(app.isLoginLinkPresent());
     }
 
 

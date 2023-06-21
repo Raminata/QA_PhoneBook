@@ -10,35 +10,33 @@ public class CreateAccountTests extends TestBase {
     //precondition: user should be logged out
     @BeforeMethod
     public void ensurePrecondition() {
-        if(!isElementPresent(By.xpath("//a[.='LOGIN']"))) {
-            click(By.xpath("//button[.='Sign Out']"));
+        if (!app.isLoginLinkPresent()) {
+            app.clickOnSignOutButton();
         }
 
         //click on login link
         //driver.findElement(By.xpath("//a[.='LOGIN']")).click();
-        click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
+        app.click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
 
     }
 
-@Test
+    @Test
     public void existedUserRegistrationNegativeTest() {
 
-    //enter email field
-    //[placeholder='Email']
+        //enter email field
+        //[placeholder='Email']
 
-    type(By.cssSelector("[placeholder='Email']"), "Rammmm123@gmail.com");
-    //enter password field
-    //[placeholder='Password']
-    type(By.cssSelector("[placeholder='Password']"), "rAmmmm123-$");
+        app.fillLoginRegistrationForm(new User().setEmail("Rammmm123@gmail.com")
+                .setPassword("rAmmmm123-$"));
 
-    //click on Registration
-    //by.name - registration
-    click(By.name("registration"));
+        //click on Registration
+        //by.name - registration
+        app.clickOnRegistrationButton();
 
 
-    //assert user logged in(check Sign out button displayed)
-    Assert.assertTrue(isAlertPresent());
-}
+        //assert user logged in(check Sign out button displayed)
+        Assert.assertTrue(app.isAlertPresent());
+    }
 
 
 }

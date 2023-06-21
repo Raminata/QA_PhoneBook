@@ -9,13 +9,13 @@ public class LoginTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition() {
-        if(!isElementPresent(By.xpath("//a[.='LOGIN']"))) {
-            click(By.xpath("//button[.='Sign Out']"));
+        if(!app.isLoginLinkPresent()) {
+            app.clickOnSignOutButton();
         }
 
         //click on login link
         //driver.findElement(By.xpath("//a[.='LOGIN']")).click();
-        click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
+        app.click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
 
     }
 
@@ -25,17 +25,34 @@ public class LoginTests extends TestBase {
         //enter email field
         //[placeholder='Email']
 
-        type(By.cssSelector("[placeholder='Email']"), "rammmm123@gmail.com");
-        //enter password field
-        //[placeholder='Password']
-        type(By.cssSelector("[placeholder='Password']"), "rAmmmm123-$");
+        app.fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com")
+                .setPassword("rAmmmm123-$"));
 
         //click on Registration
         //by.name - registration
-        click(By.name("login"));
+        app.clickOnLoginLink();
 
 
         //assert user logged in(check Sign out button displayed)
-        Assert.assertTrue(isElementPresent(By.xpath("//button[.='Sign Out']")));
+        Assert.assertTrue(app.isSignOutButtonPresent());
     }
+
+    @Test
+    public void loginNegativeWithoutPasswordTest() {
+
+        //enter email field
+        //[placeholder='Email']
+
+        app.fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com"));
+
+        //click on Registration
+        //by.name - registration
+        app.clickOnLoginLink();
+        Assert.assertTrue(app.isAlertPresent());
+
+
+        //assert user logged in(check Sign out button displayed)
+
+    }
+
 }
