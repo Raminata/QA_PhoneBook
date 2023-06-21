@@ -37,7 +37,13 @@ public class CreateContactTests extends TestBase {
         Assert.assertTrue(app.isContactCreated("Marc"));//номер тел
     }
 
-    //написать авто метод удаление (ремуве), без ассертов
+    /**
+     * В классе CreateContactTests дописать постусловие(@AfterMethod), в котором будет
+     * метод, удаляющий контакт(сам метод должен находиться в классе ApplicationManager)
+     */
+
+   
+
     @AfterMethod
     public void removeContact(){
         app.searchNewCreatedContact();
