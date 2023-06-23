@@ -1,5 +1,6 @@
 package com.phonebook.tests;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -32,6 +33,21 @@ public class HeaderTests extends TestBase {
         Assert.assertTrue(app.getHeader().isLoginLinkPresent());
     }
 
+    @Test
+    public void headerContacts(){
+        if (!app.getHeader().isLoginLinkPresent()) {
+            app.getHeader().clickOnSignOutButton();
+        }
+
+        app.getHeader().clickOnLoginLink();
+
+        app.getUser().fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com")
+                .setPassword("rAmmmm123-$"));
+
+        app.getHeader().clickOnLoginButton();
+
+        Assert.assertTrue(app.getHeader().isContactsLinkPresent());
+    }
 
 }
 

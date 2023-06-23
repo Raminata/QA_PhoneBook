@@ -16,6 +16,18 @@ public class HeaderHelper extends BaseHelper {
         return isElementPresent1(By.xpath("//a[@href='/about']"));
     }
 
+    public void clickOnAboutLink() {
+        click(By.xpath("//a[.='ABOUT']"));
+    }
+
+    public boolean isContactsLinkPresent() {
+        return isElementPresent1(By.xpath("//a[@href='/contacts']"));
+    }
+
+    public void clickOnContactsLink() {
+        click(By.xpath("//a[.='CONTACTS']"));
+    }
+
     public boolean isSignOutButtonPresent() {
         return isElementPresent(By.xpath("//button[.='Sign Out']"));
     }

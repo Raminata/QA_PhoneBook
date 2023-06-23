@@ -40,4 +40,22 @@ public class ContactHelper extends BaseHelper {
     public void removeElement() {
         click(By.xpath("//button[text()='Remove']"));
     }
+
+    public boolean isContactListEmpty() {
+//        List<WebElement> contacts = driver.findElements(By.cssSelector("h1"));
+//        for (WebElement element : contacts) {
+//            if (element.getText().contains("No Contacts here!"))
+//                return true;
+//        }
+//        return false;
+
+        return driver.findElements(By.cssSelector(".contact-item_card__2SOIM")).isEmpty();
+    }
+
+    public void removeContact() {
+        if (!isContactListEmpty()) {
+            click(By.cssSelector(".contact-item_card__2SOIM"));
+            click(By.xpath("//button[.='Remove']"));
+        }
+    }
 }

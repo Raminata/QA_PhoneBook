@@ -22,7 +22,6 @@ public class HomePageHelper extends BaseHelper {
     }
 
     public boolean isHomeComponentPresent() {
-
         return isElementPresent(By.xpath("//h1[text()='Home Component']"));
     }
 }
