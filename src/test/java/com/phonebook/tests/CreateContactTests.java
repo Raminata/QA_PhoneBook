@@ -1,10 +1,14 @@
 package com.phonebook.tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class CreateContactTests extends TestBase {
 
@@ -14,23 +18,20 @@ public class CreateContactTests extends TestBase {
             app.getHeader().clickOnSignOutButton();
         }
 
-        app.getUser().click(By.xpath("//a[.='LOGIN']"));
+        app.getHeader().clickOnLoginLink();
 
         app.getUser().fillLoginRegistrationForm(new User()
                 .setEmail("rammmm123@gmail.com")
                 .setPassword("rAmmmm123-$")
         );
 
-        app.getHeader().clickOnLoginLink();
+        app.getHeader().clickOnLoginButton();
     }
 
     @Test
     public void addContactPositiveTest() {
-        //click on the ADD link
         app.getHeader().clickOnAddLink();
-        //int i = (int) (System.currentTimeMillis()/1000)%3600;
-        //type(By.cssSelector("input:nth-child(1)"), "Marc" + i);
-        //fill in the add contact form
+
         app.getContact().fillAddContactForm(new Contact()
                 .setName("Marc")
                 .setLastname("Eddinberg")
@@ -38,7 +39,6 @@ public class CreateContactTests extends TestBase {
                 .setEmail("eddinberg@gmail.com")
                 .setAddress("Koblenz")
                 .setDesc("goalkeeper"));
-
 
         //click on the Save button
         app.getContact().clickOnSaveButton();
@@ -53,17 +53,12 @@ public class CreateContactTests extends TestBase {
      */
     @AfterMethod
     public void removeContact() {
+        WebDriverWait wait = new WebDriverWait(app.driver,  Duration.ofMillis(10), Duration.ofMillis(100));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("dummy-element")));
+
         app.getContact().searchNewCreatedContact();
         app.getContact().removeElement();
     }
-
-    //teacher's code
-    /*@AfterMethod
-    public void postCondition() {
-
-        app.getContact().removeContact();
-    }*/
-
 
     //POV page object
     //VOM value object

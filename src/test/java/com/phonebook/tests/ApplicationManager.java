@@ -55,7 +55,7 @@ public class ApplicationManager {
 
         driver.get("https://telranedu.web.app");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
         user = new UserHelper(driver);
         contact = new ContactHelper(driver);

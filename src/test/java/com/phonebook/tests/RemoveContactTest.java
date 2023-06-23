@@ -27,13 +27,8 @@ public class RemoveContactTest extends TestBase {
 
         app.getHeader().clickOnLoginButton();
 
-
         // remove all exisitng contact
         app.getHeader().clickOnContactsLink();
-
-        while(!app.getContact().isContactListEmpty()){
-            app.getContact().removeContact();
-        }
 
         //click on the ADD link
         app.getHeader().clickOnAddLink();

@@ -1,6 +1,5 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,7 +14,7 @@ public class LoginTests extends TestBase {
 
         //click on login link
         //driver.findElement(By.xpath("//a[.='LOGIN']")).click();
-        app.getUser().click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
+        app.getHeader().clickOnLoginLink();
     }
 
     @Test
@@ -35,20 +34,10 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginNegativeWithoutPasswordTest() {
-
-        //enter email field
-        //[placeholder='Email']
-
         app.getUser().fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com"));
 
-        //click on Registration
-        //by.name - registration
-        app.getHeader().clickOnLoginLink();
+        app.getHeader().clickOnLoginButton();
         Assert.assertTrue(app.getUser().isAlertPresent());
-
-
-        //assert user logged in(check Sign out button displayed)
-
     }
 
 }

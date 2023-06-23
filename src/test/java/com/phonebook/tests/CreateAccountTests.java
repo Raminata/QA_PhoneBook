@@ -1,6 +1,5 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,10 +13,7 @@ public class CreateAccountTests extends TestBase {
             app.getHeader().clickOnSignOutButton();
         }
 
-        //click on login link
-        //driver.findElement(By.xpath("//a[.='LOGIN']")).click();
-        app.getHomePage().click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
-
+        app.getHeader().clickOnLoginLink();
     }
 
     @Test
@@ -25,7 +21,6 @@ public class CreateAccountTests extends TestBase {
 
         //enter email field
         //[placeholder='Email']
-
         app.getUser().fillLoginRegistrationForm(new User().setEmail("Rammmm123@gmail.com")
                 .setPassword("rAmmmm123-$"));
 
@@ -33,10 +28,7 @@ public class CreateAccountTests extends TestBase {
         //by.name - registration
         app.getUser().clickOnRegistrationButton();
 
-
         //assert user logged in(check Sign out button displayed)
         Assert.assertTrue(app.getUser().isAlertPresent());
     }
-
-
 }

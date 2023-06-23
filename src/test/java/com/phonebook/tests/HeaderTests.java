@@ -9,8 +9,6 @@ import org.testng.annotations.Test;
  * В проекте создать новый класс HeaderTests и в нем 4 метода, которые будут проверять наличие
  * элементов в навигационной панели(логотип, HOME, ABOUT и LOGIN)
  */
-
-
 public class HeaderTests extends TestBase {
 
     @Test
@@ -30,6 +28,10 @@ public class HeaderTests extends TestBase {
 
     @Test
     public void headerLogin() {
+        if (!app.getHeader().isLoginLinkPresent()) {
+            app.getHeader().clickOnSignOutButton();
+        }
+
         Assert.assertTrue(app.getHeader().isLoginLinkPresent());
     }
 

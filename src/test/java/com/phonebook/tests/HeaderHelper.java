@@ -44,6 +44,14 @@ public class HeaderHelper extends BaseHelper {
         click(By.xpath("//button[.='Login']"));
     }
 
+    public boolean isHomeLinkPresent() {
+        return isElementPresent(By.xpath("//a[@href='/home']"));
+    }
+
+    public void clickOnHomeLink() {
+        click(By.xpath("//a[.='HOME']"));
+    }
+
     public void clickOnSignOutButton() {
         click(By.xpath("//button[.='Sign Out']"));
     }
