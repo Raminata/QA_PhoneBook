@@ -14,22 +14,22 @@ public class HeaderTests extends TestBase {
 
     @Test
     public void headerLogo() {
-        Assert.assertTrue(app.isLogoPresent());
+        Assert.assertTrue(app.getHeader().isLogoPresent());
     }
 
     @Test
     public void headerHome() {
-        Assert.assertTrue(app.isHomeLinkPresent());
+        Assert.assertTrue(app.getHomePage().isHomeLinkPresent());
     }
 
     @Test
     public void headerAbout() {
-        Assert.assertTrue(app.isAboutLinkPresent());
+        Assert.assertTrue(app.getHeader().isAboutLinkPresent());
     }
 
     @Test
     public void headerLogin() {
-        Assert.assertTrue(app.isLoginLinkPresent());
+        Assert.assertTrue(app.getHeader().isLoginLinkPresent());
     }
 
 

@@ -9,32 +9,28 @@ public class LoginTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition() {
-        if(!app.isLoginLinkPresent()) {
-            app.clickOnSignOutButton();
+        if (!app.getHeader().isLoginLinkPresent()) {
+            app.getHeader().clickOnSignOutButton();
         }
 
         //click on login link
         //driver.findElement(By.xpath("//a[.='LOGIN']")).click();
-        app.click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
-
+        app.getUser().click(By.xpath("//a[.='LOGIN']"));//отптимизированный метод(расширенный для любого клика)
     }
 
     @Test
     public void loginPositiveTest() {
-
         //enter email field
         //[placeholder='Email']
-
-        app.fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com")
+        app.getUser().fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com")
                 .setPassword("rAmmmm123-$"));
 
         //click on Registration
         //by.name - registration
-        app.clickOnLoginLink();
-
+        app.getHeader().clickOnLoginButton();
 
         //assert user logged in(check Sign out button displayed)
-        Assert.assertTrue(app.isSignOutButtonPresent());
+        Assert.assertTrue(app.getHeader().isSignOutButtonPresent());
     }
 
     @Test
@@ -43,12 +39,12 @@ public class LoginTests extends TestBase {
         //enter email field
         //[placeholder='Email']
 
-        app.fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com"));
+        app.getUser().fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com"));
 
         //click on Registration
         //by.name - registration
-        app.clickOnLoginLink();
-        Assert.assertTrue(app.isAlertPresent());
+        app.getHeader().clickOnLoginLink();
+        Assert.assertTrue(app.getUser().isAlertPresent());
 
 
         //assert user logged in(check Sign out button displayed)

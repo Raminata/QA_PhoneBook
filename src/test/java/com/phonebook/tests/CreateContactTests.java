@@ -10,45 +10,60 @@ public class CreateContactTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!app.isLoginLinkPresent()) {
-            app.clickOnSignOutButton();
+        if (!app.getHeader().isLoginLinkPresent()) {
+            app.getHeader().clickOnSignOutButton();
         }
 
-        app.click(By.xpath("//a[.='LOGIN']"));
+        app.getUser().click(By.xpath("//a[.='LOGIN']"));
 
-        app.fillLoginRegistrationForm(new User().setEmail("rammmm123@gmail.com")
-                .setPassword("rAmmmm123-$"));
+        app.getUser().fillLoginRegistrationForm(new User()
+                .setEmail("rammmm123@gmail.com")
+                .setPassword("rAmmmm123-$")
+        );
 
-        app.clickOnLoginLink();
-
+        app.getHeader().clickOnLoginLink();
     }
 
     @Test
     public void addContactPositiveTest() {
-//click on the ADD link
-        app.clickOnAddLink();
+        //click on the ADD link
+        app.getHeader().clickOnAddLink();
         //int i = (int) (System.currentTimeMillis()/1000)%3600;
         //type(By.cssSelector("input:nth-child(1)"), "Marc" + i);
         //fill in the add contact form
-        app.fillAddContactForm("Marc", "Eddinberg", "12345678910", "eddinberg@gmail.com", "Koblenz", "goalkeeper");
+        app.getContact().fillAddContactForm(new Contact()
+                .setName("Marc")
+                .setLastname("Eddinberg")
+                .setPhone("12345678910")
+                .setEmail("eddinberg@gmail.com")
+                .setAddress("Koblenz")
+                .setDesc("goalkeeper"));
+
+
         //click on the Save button
-        app.clickOnSaveButton();
+        app.getContact().clickOnSaveButton();
+
         //assert the contact is added
-        Assert.assertTrue(app.isContactCreated("Marc"));//номер тел
+        Assert.assertTrue(app.getContact().isContactCreated("Marc"));//номер тел
     }
 
     /**
      * В классе CreateContactTests дописать постусловие(@AfterMethod), в котором будет
      * метод, удаляющий контакт(сам метод должен находиться в классе ApplicationManager)
      */
-
-   
-
     @AfterMethod
-    public void removeContact(){
-        app.searchNewCreatedContact();
-        app.removeElement();
+    public void removeContact() {
+        app.getContact().searchNewCreatedContact();
+        app.getContact().removeElement();
     }
+
+    //teacher's code
+    /*@AfterMethod
+    public void postCondition() {
+
+        app.getContact().removeContact();
+    }*/
+
 
     //POV page object
     //VOM value object
