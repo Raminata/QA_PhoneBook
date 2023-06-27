@@ -45,7 +45,7 @@ public class CreateContactTests extends TestBase {
         Assert.assertTrue(app.getContact().isContactCreated("Marc"));//номер тел
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "addContactFromCsvFile")
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "addContactPositiveFromCsvFile")
     public void addContactFromCsvFilePositiveTest(Contact contact) {
         app.getHeader().clickOnAddLink();
 
@@ -54,7 +54,7 @@ public class CreateContactTests extends TestBase {
         app.getContact().clickOnSaveButton();
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "addContactFromCsvFileIncorrect")
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "addContactNegativeFromCsvFile")
     public void addContactFromCsvFileNegativeTest(Contact contact) {
         app.getHeader().clickOnAddLink();
 
