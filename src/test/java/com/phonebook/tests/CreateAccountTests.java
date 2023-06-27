@@ -1,5 +1,6 @@
 package com.phonebook.tests;
 
+import com.phonebook.modle.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

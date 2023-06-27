@@ -1,4 +1,4 @@
-package com.phonebook.tests;
+package com.phonebook.modle;
 
 public class Contact {
     private String name;
@@ -60,5 +60,13 @@ public class Contact {
 
     public String getDesc() {
         return desc;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

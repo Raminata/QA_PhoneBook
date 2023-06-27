@@ -1,5 +1,6 @@
-package com.phonebook.tests;
+package com.phonebook.fw;
 
+import com.phonebook.modle.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,6 +42,7 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//button[text()='Remove']"));
     }
 
+
     public boolean isContactListEmpty() {
 //        List<WebElement> contacts = driver.findElements(By.cssSelector("h1"));
 //        for (WebElement element : contacts) {
@@ -57,5 +59,13 @@ public class ContactHelper extends BaseHelper {
             click(By.cssSelector(".contact-item_card__2SOIM"));
             click(By.xpath("//button[.='Remove']"));
         }
+    }
+
+    public int sizeOfContacts() {
+        if (isElementPresent(By.cssSelector(".contact-item_card__2SOIM"))) {
+            return driver.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
+        }
+
+        return 0;
     }
 }

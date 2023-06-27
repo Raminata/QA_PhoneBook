@@ -1,4 +1,4 @@
-package com.phonebook.tests;
+package com.phonebook.modle;
 
 public class User {
 

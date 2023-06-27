@@ -1,14 +1,12 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.phonebook.fw.DataProviders;
+import com.phonebook.modle.Contact;
+import com.phonebook.modle.User;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class CreateContactTests extends TestBase {
 
@@ -47,17 +45,33 @@ public class CreateContactTests extends TestBase {
         Assert.assertTrue(app.getContact().isContactCreated("Marc"));//номер тел
     }
 
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "addContactFromCsvFile")
+    public void addContactFromCsvFilePositiveTest(Contact contact) {
+        app.getHeader().clickOnAddLink();
+
+        app.getContact().fillAddContactForm(contact);
+
+        app.getContact().clickOnSaveButton();
+    }
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "addContactFromCsvFileIncorrect")
+    public void addContactFromCsvFileNegativeTest(Contact contact) {
+        app.getHeader().clickOnAddLink();
+
+        app.getContact().fillAddContactForm(contact);
+
+        app.getContact().clickOnSaveButton();
+
+        Assert.assertTrue(app.getUser().isAlertPresent());
+    }
+
     /**
      * В классе CreateContactTests дописать постусловие(@AfterMethod), в котором будет
      * метод, удаляющий контакт(сам метод должен находиться в классе ApplicationManager)
      */
     @AfterMethod
     public void removeContact() {
-        WebDriverWait wait = new WebDriverWait(app.driver,  Duration.ofMillis(10), Duration.ofMillis(100));
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("dummy-element")));
-
-        app.getContact().searchNewCreatedContact();
-        app.getContact().removeElement();
+        app.getContact().removeContact();
     }
 
     //POV page object

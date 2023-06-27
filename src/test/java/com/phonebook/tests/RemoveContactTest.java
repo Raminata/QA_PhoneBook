@@ -1,5 +1,7 @@
 package com.phonebook.tests;
 
+import com.phonebook.modle.Contact;
+import com.phonebook.modle.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -54,14 +56,23 @@ public class RemoveContactTest extends TestBase {
 
     @Test
     public void removeContactPositiveTest() {
+
+        int sizeBefore = app.getContact().sizeOfContacts();
+        System.out.println(sizeBefore);
+
         app.getContact().removeContact();
+        app.getContact().pause(1000);
+
+        int sizeAfter = app.getContact().sizeOfContacts();
+        System.out.println(sizeAfter);
+        Assert.assertEquals(sizeAfter,sizeBefore-1);
 
         // Refresh the page
-        WebDriverWait wait = new WebDriverWait(app.driver,  Duration.ofMillis(10), Duration.ofMillis(100));
+       /* WebDriverWait wait = new WebDriverWait(app.driver,  Duration.ofMillis(10), Duration.ofMillis(100));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("dummy-element")));
 
         // assert the contact can not be found
-        Assert.assertTrue(app.getContact().isContactListEmpty());
+        Assert.assertTrue(app.getContact().isContactListEmpty());*/
     }
 
 }

@@ -1,4 +1,4 @@
-package com.phonebook.tests;
+package com.phonebook.fw;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,7 +11,7 @@ import java.time.Duration;
 public class ApplicationManager {
 
     String browser;
-    WebDriver driver;
+   public WebDriver driver;
 
 
     UserHelper user;
@@ -40,6 +40,8 @@ public class ApplicationManager {
     }
 
     public void init() {
+        //закрытие - системные предупреждения
+        System.err.close();
 
         if (browser.equalsIgnoreCase("chrome")) {
             driver = new ChromeDriver();
@@ -67,15 +69,4 @@ public class ApplicationManager {
         driver.quit();
     }
 
-    //teacher's code
-    /*public void removeContact() {
-        if (!isContactListEmpty()) {
-            click(By.cssSelector(".contact-item_card__2SOIM"));
-            click(By.xpath("//button[.='Remove']"));
-        }
-    }
-
-    public boolean isContactListEmpty() {
-        return driver.findElements(By.cssSelector(".contact-item_card__2SOIM")).isEmpty();
-    }*/
 }

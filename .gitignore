@@ -45,3 +45,5 @@ bin/
 settings.gradle
 gradlew
 *.bat
+
+/src/test_logs/**

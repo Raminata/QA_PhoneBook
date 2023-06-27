@@ -1,6 +1,6 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
+import com.phonebook.modle.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
